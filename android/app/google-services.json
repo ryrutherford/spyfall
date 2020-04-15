@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1015351463125",
+    "firebase_url": "https://spyfall-a916d.firebaseio.com",
+    "project_id": "spyfall-a916d",
+    "storage_bucket": "spyfall-a916d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015351463125:android:2c50a3aedec74fb136e65c",
+        "android_client_info": {
+          "package_name": "com.ryrutherford.spyfall"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015351463125-48p5bpveglhccg5nuha7hckqe68alutj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvNB0khvetid4E8xM85IrkBCXLgpRSFwo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015351463125-48p5bpveglhccg5nuha7hckqe68alutj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
