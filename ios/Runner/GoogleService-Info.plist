@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1015351463125-1tcau4k4ps5luqkgc8gh5lpgm9hoe0ll.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1015351463125-1tcau4k4ps5luqkgc8gh5lpgm9hoe0ll</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD35ZmXWId7yLCnIxNFJaGPR8ugeecpWyg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1015351463125</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ryrutherford.spyfall</string>
+	<key>PROJECT_ID</key>
+	<string>spyfall-a916d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>spyfall-a916d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1015351463125:ios:7406a6c1f13dbc9836e65c</string>
+	<key>DATABASE_URL</key>
+	<string>https://spyfall-a916d.firebaseio.com</string>
+</dict>
+</plist>

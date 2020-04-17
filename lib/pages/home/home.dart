@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:spyfall/models/locations.dart';
+import 'package:spyfall/pages/home/locations_form.dart';
+import 'package:spyfall/services/database.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -8,29 +12,50 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   String deviceID, deviceIDErrorMSG;
+  List<dynamic> activeLocations, inactiveLocations;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      //extracting the deviceID that was retrieved when the app first loaded
+      Map argMap = ModalRoute.of(context).settings.arguments;
+      try{
+        deviceID = argMap['deviceID'];
+        activeLocations = argMap['activeLocations'];
+        inactiveLocations = argMap['inactiveLocations'];
+        print(deviceID);
+      }
+      catch(e){
+        deviceIDErrorMSG = argMap['deviceIDErrorMSG'];
+      }
+    });
+  }  
 
   @override
   Widget build(BuildContext context) {
 
-    //extracting the deviceID that was retrieved when the app first loaded
-    Map argMap = ModalRoute.of(context).settings.arguments;
-    try{
-      deviceID = argMap['deviceID'];
-      print(deviceID);
+    void _showLocationsPanel(){
+      showModalBottomSheet(context: context, isScrollControlled: true, builder: (context) {
+        return Container(
+          color: Color(0xFF2F2C3D),
+          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
+          child: StreamProvider<Locations>.value(
+            value: DatabaseService(this.deviceID).userLocations,
+            child: LocationsForm()
+          ),
+        );
+      });
     }
-    catch(e){
-      deviceIDErrorMSG = argMap['deviceIDErrorMSG'];
-      print(deviceIDErrorMSG);
-    }
-
+    
     return Scaffold(
       appBar: AppBar(
           title: Text('Spyfall'),
-          centerTitle: true,
           backgroundColor: Color(0xFF947C6A),
+          centerTitle: true,
       ),
       body: Container(
-        color: Color(0xFF2F2C3D),//Colors.grey[850],
+        color: Color(0xFF2F2C3D),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -41,7 +66,7 @@ class _HomeState extends State<Home> {
                   minWidth: MediaQuery.of(context).size.width/2.5,
                   child: FlatButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/new_game');
+                      Navigator.pushNamed(context, '/enter_name', arguments: {'deviceID': deviceID});
                     },
                     child: Text(
                       'New Game', 
@@ -101,6 +126,11 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _showLocationsPanel(),
+        child: Icon(Icons.edit_location),
+        backgroundColor: Color(0xFF947C6A),
       ),
     );
   }
