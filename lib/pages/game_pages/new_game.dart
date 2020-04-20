@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:spyfall/models/game.dart';
+import 'package:spyfall/pages/game_pages/button_provider.dart';
 import 'package:spyfall/pages/game_pages/player_list.dart';
 import 'package:spyfall/services/database.dart';
 import 'package:provider/provider.dart';
@@ -73,6 +74,7 @@ class _NewGameState extends State<NewGame> {
             ),
           ),
         ),
+        floatingActionButton: ButtonProvider(creatorID),
       ),
     );
   }

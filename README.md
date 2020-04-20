@@ -1,16 +1,19 @@
 # spyfall
 
-A new Flutter project.
+A flutter project that aims to create a functional app on iOS and Android to manage Spyfall games. (Read about spyfall [here](https://www.spyfall.app/gamerules))
 
-## Getting Started
+## April 18th, 2020
 
-This project is a starting point for a Flutter application.
+- The app is integrated with firestore to manage: active game sessions and users custom game locations/location preferences
+- Users can create new game sessions
 
-A few resources to get you started if this is your first Flutter project:
+## April 19th, 2020
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- Users can now add custom game locations
+- Users can now delete game locations
+- Users can now change the active status of game locations
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## April 20th, 2020
+
+- Users can now join games that haven't started yet using a shared access code
+- Users can now restore default locations in the location bottomsheet

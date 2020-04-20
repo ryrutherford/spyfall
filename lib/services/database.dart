@@ -24,6 +24,7 @@ class DatabaseService {
       'spyID': '',
       'spyLocationGuess': '',
       'unusedLocations': unusedLocations,
+      'isActive': false,
     });
   }
 
@@ -50,7 +51,11 @@ class DatabaseService {
 
   Locations _locationsFromDocSnap(DocumentSnapshot snapshot){
     var data = snapshot.data;
-    return Locations(List.from(data['activeLocations']), List.from(data['inactiveLocations']));
+    List<String> activeLocations = List.from(data['activeLocations']);
+    activeLocations.sort((a, b) => a.toString().compareTo(b.toString()));
+    List<String> inactiveLocations = List.from(data['inactiveLocations']);
+    inactiveLocations.sort((a, b) => a.toString().compareTo(b.toString()));
+    return Locations(activeLocations, inactiveLocations, data['remindUser']);
   }
 
   //get user locations

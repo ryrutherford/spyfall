@@ -65,7 +65,7 @@ class _EnterNameState extends State<EnterName> {
       backgroundColor: Color(0xFF2F2C3D),
       appBar: AppBar(
         backgroundColor: Color(0xFF947C6A),
-        title: Text('Enter Your Name'),
+        title: Text('Spyfall'),
         centerTitle: true,
       ),
       body: Container(
@@ -94,7 +94,7 @@ class _EnterNameState extends State<EnterName> {
                     style: TextStyle(color: Colors.white),
                   ),
                   //when the name is not empty and only contains characters, a user can submit
-                  onPressed: this.name != '' && RegExp(r'^[a-zA-Z]+$').hasMatch(name) ? () async {
+                  onPressed: this.name != '' && RegExp(r'^[a-zA-Z0-9 ]+$').hasMatch(name) ? () async {
                     //when the button is pushed we will create a new game instance in firestore
                     //the createNewGame method will return the access code which will be passed to the NewGame widget
                     int accessCode;

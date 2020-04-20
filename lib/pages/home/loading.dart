@@ -29,6 +29,7 @@ class Loading extends StatelessWidget {
         await userLocations.document(deviceID).setData({
           'activeLocations': activeLocations,
           'inactiveLocations': inactiveLocations,
+          'remindUser': true,
         });
       }
       else{

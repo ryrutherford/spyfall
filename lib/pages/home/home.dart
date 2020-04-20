@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:spyfall/models/locations.dart';
-import 'package:spyfall/pages/home/locations_form.dart';
+import 'package:spyfall/pages/home/locations/locations_form.dart';
 import 'package:spyfall/services/database.dart';
 
 class Home extends StatefulWidget {
@@ -36,13 +36,13 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
 
     void _showLocationsPanel(){
-      showModalBottomSheet(context: context, isScrollControlled: true, builder: (context) {
+      showModalBottomSheet(context: context, builder: (context) {
         return Container(
           color: Color(0xFF2F2C3D),
           padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
           child: StreamProvider<Locations>.value(
             value: DatabaseService(this.deviceID).userLocations,
-            child: LocationsForm()
+            child: LocationsForm(this.deviceID)
           ),
         );
       });
@@ -86,7 +86,7 @@ class _HomeState extends State<Home> {
                   minWidth: MediaQuery.of(context).size.width/2.5,
                   child: FlatButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/join_game');
+                      Navigator.pushNamed(context, '/join_game', arguments: {'deviceID': deviceID});
                     },
                     color: Color(0xFF947C6A),
                     child: Text(
