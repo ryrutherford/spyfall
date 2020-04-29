@@ -11,7 +11,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  String deviceID, deviceIDErrorMSG;
+  String deviceID;
   List<dynamic> activeLocations, inactiveLocations;
 
   @override
@@ -20,15 +20,9 @@ class _HomeState extends State<Home> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       //extracting the deviceID that was retrieved when the app first loaded
       Map argMap = ModalRoute.of(context).settings.arguments;
-      try{
-        deviceID = argMap['deviceID'];
-        activeLocations = argMap['activeLocations'];
-        inactiveLocations = argMap['inactiveLocations'];
-        print(deviceID);
-      }
-      catch(e){
-        deviceIDErrorMSG = argMap['deviceIDErrorMSG'];
-      }
+      deviceID = argMap['deviceID'];
+      activeLocations = argMap['activeLocations'];
+      inactiveLocations = argMap['inactiveLocations'];
     });
   }  
 

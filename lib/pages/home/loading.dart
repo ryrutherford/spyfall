@@ -47,10 +47,7 @@ class Loading extends StatelessWidget {
       }));
 
     } on PlatformException {
-      //TODO: make app unusable if device is not supported
-      Timer(Duration(seconds: 2), () => Navigator.pushReplacementNamed(context, '/home', arguments: {
-        'deviceIDErrorMSG': 'Device Not Supported',
-      }));
+      Timer(Duration(seconds: 2), () => Navigator.pushReplacementNamed(context, '/error_page'));
     }
   }
 

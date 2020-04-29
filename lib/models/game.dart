@@ -46,6 +46,9 @@ class Game {
     return this._isActive;
   }
 
+  int getNumPlayers(){
+    return this._allPlayerIDsWithNames.length;
+  }
   //returns a list of all the names of players in the game
   List<String> getListOfPlayers(){
     return this._allPlayerIDsWithNames.map((userInfo) {
@@ -58,6 +61,16 @@ class Game {
       }).toList();
   }
 
+  List<String> getListOfPlayerIDs(){
+        return this._allPlayerIDsWithNames.map((userInfo) {
+      String id;
+      for (var key in userInfo.keys){
+        id = key;
+        break;
+      }
+      return id;
+      }).toList();
+  }
   //returns a list of all the names of players in the game with their score
   List<String> getScoreTally(){
     return this._scoreTally.map((scoreMap) {

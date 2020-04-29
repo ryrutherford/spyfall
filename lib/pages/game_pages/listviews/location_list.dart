@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:spyfall/models/game.dart';
-import 'package:spyfall/pages/game_pages/player_tile.dart';
+import 'package:spyfall/pages/game_pages/listviews/game_location_tile.dart';
 
-class PlayerList extends StatefulWidget {
+class LocationList extends StatefulWidget {
   @override
-  _PlayerListState createState() => _PlayerListState();
+  _LocationListState createState() => _LocationListState();
 }
 
-class _PlayerListState extends State<PlayerList> {
+class _LocationListState extends State<LocationList> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -20,14 +20,16 @@ class _PlayerListState extends State<PlayerList> {
     }
     else{
       print('activeGame was not null');
-      List<String> players = activeGame.getListOfPlayers();
+      List<String> locations = activeGame.getUnusedLocations();
+      locations.add(activeGame.getCurrentLocation());
+      locations.sort((a, b) => a.toString().compareTo(b.toString()));
       return Expanded(
         child: GridView.count(
           crossAxisCount: 2,
           childAspectRatio: ((size.width*3) / size.height),
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
-          children: List.generate(players.length, (index) => PlayerTile(player: players[index]))
+          children: List.generate(locations.length, (index) => GameLocationTile(location: locations[index]))
         ),
       );
     }

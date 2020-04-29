@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:spyfall/shared/constants.dart';
 
-//need to handle case when error doesnt exist (add error message)
 
 class JoinGame extends StatefulWidget {
   @override
@@ -28,7 +27,7 @@ class _JoinGameState extends State<JoinGame> {
   void initState() {
     super.initState();
     //retrieving the deviceID from the parent widget
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       passedParams = ModalRoute.of(context).settings.arguments;
       deviceID = passedParams['deviceID'];
     });
@@ -80,7 +79,8 @@ class _JoinGameState extends State<JoinGame> {
       if(idList.contains(this.deviceID)){
         Navigator.pushNamed(context, '/new_game', arguments: {
           'creatorID': creatorID,
-          'accessCode': accessCode
+          'accessCode': accessCode,
+          'deviceID': deviceID
         });
       }
       else if(playersInGame.length < 10){
@@ -101,7 +101,8 @@ class _JoinGameState extends State<JoinGame> {
           //push to the new game screen
           Navigator.pushNamed(context, '/new_game', arguments: {
             'creatorID': creatorID,
-            'accessCode': accessCode
+            'accessCode': accessCode,
+            'deviceID': deviceID,
           });
         }
       }
@@ -112,8 +113,27 @@ class _JoinGameState extends State<JoinGame> {
     }
     //if the game is active 
     else if(creatorID != ''){
-      errorMsg = 'The code you entered belongs to a game that\'s already active.';
-      print('The code you entered belongs to a game that\'s already active.');
+      List<String> idList = playersInGame.map((userInfo) {
+      String id;
+        for (var entry in userInfo.entries){
+          id = entry.key;
+          break;
+        }
+        return id;
+        }).toList();
+
+      //if the player has already joined the game, they will just be redirected to the active game screen
+      if(idList.contains(this.deviceID)){
+        Navigator.pushReplacementNamed(context, '/active_game', arguments: {
+          'creatorID': creatorID,
+          'accessCode': accessCode,
+          'deviceID': deviceID,
+        });
+      }
+      else{
+        errorMsg = 'The code you entered belongs to a game that\'s already active.';
+        print('The code you entered belongs to a game that\'s already active.');
+      }
     }
     return errorMsg;
   }
@@ -166,7 +186,9 @@ class _JoinGameState extends State<JoinGame> {
                   ),
                   //when the name and access code are valid
                   onPressed: RegExp(r'^(?:-?(?:0|[1-9][0-9]*))$').hasMatch(_accessCode) && _accessCode.length == 6 && RegExp(r'^[a-zA-Z0-9 ]+$').hasMatch(_name) ? () async {
-                    await _joinGame(int.parse(_accessCode), _name).then((val) => setState(() => _errorMsg = val));
+                    await _joinGame(int.parse(_accessCode), _name).then((val) {
+                        setState(() => _errorMsg = val);
+                    });
                     _formKey.currentState.reset();
                     print('error message: $this._errorMsg');
                   }

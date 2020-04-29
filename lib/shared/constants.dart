@@ -11,7 +11,6 @@ const textInputDecoration = InputDecoration(
     )
   );
 
-
 //the default game locations
 const List<String> defaultLocations = ["Airplane", "Amusement Park", "Aquarium", "Art Museum", "Bank", "Beach", "Blimp", "Bus", "Cemetery", "Cinema", "Casino", "Cathedral",
   "Circus", "Concert", "Construction Site", "Cruise Ship", "Embassy", "Farm", "Gas Station", "High School", "Hospital", "Hot Air Balloon", "Hotel", "Jail", "Jazz Club", "Library",

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:spyfall/models/game.dart';
 import 'package:spyfall/pages/game_pages/button_provider.dart';
-import 'package:spyfall/pages/game_pages/player_list.dart';
+import 'package:spyfall/pages/game_pages/listviews/player_list.dart';
 import 'package:spyfall/services/database.dart';
 import 'package:provider/provider.dart';
 
@@ -13,30 +13,14 @@ class NewGame extends StatefulWidget {
 
 class _NewGameState extends State<NewGame> {
 
-  /*int accessCode;
-  String creatorID;
-  var passedParams;*/
   final CollectionReference activeGamesCollection = Firestore.instance.collection('activeGames');
 
-  @override
-  void initState() {
-
-    super.initState();
-
-    //need to use a WidgetsBinding to access context in initState and use async
-    /*WidgetsBinding.instance.addPostFrameCallback((_) async {
-      passedParams = ModalRoute.of(context).settings.arguments;
-      creatorID = passedParams['creatorID'];
-      accessCode = passedParams['accessCode'];
-    });*/
-
-  }
-  
   @override
   Widget build(BuildContext context) {
     Map passedParams = ModalRoute.of(context).settings.arguments;
     String creatorID = passedParams['creatorID'];
     int accessCode = passedParams['accessCode'];
+    String deviceID = passedParams['deviceID'];
 
     return StreamProvider<Game>.value(
       value: DatabaseService(creatorID).activeGame,
@@ -74,7 +58,7 @@ class _NewGameState extends State<NewGame> {
             ),
           ),
         ),
-        floatingActionButton: ButtonProvider(creatorID),
+        floatingActionButton: ButtonProvider(creatorID, deviceID),
       ),
     );
   }

@@ -101,7 +101,8 @@ class _EnterNameState extends State<EnterName> {
                     await createNewGame(this.creatorID, this.name).then((code) => accessCode = code);
                     Navigator.pushNamed(context, '/new_game', arguments: {
                       'creatorID': creatorID,
-                      'accessCode': accessCode
+                      'accessCode': accessCode,
+                      'deviceID': creatorID,
                     });
                   }
                   :

@@ -25,6 +25,7 @@ class DatabaseService {
       'spyLocationGuess': '',
       'unusedLocations': unusedLocations,
       'isActive': false,
+      'playerSpyGuess': '',
     });
   }
 
